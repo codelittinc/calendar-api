@@ -1,0 +1,29 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.detectIndentation": false,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "html",
+      "typescriptreact"
+    ],
+    "editor.formatOnSave": true,
+    "[css]": {
+      "editor.formatOnSave": false,
+    },
+    "[scss]": {
+      "editor.formatOnSave": false,
+    },
+    "stylelint.enable": true,
+    "css.validate": true,
+    "scss.validate": true,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": false,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": false,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+}
