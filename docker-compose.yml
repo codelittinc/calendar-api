@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  db:
+    container_name: calendar-api-db
+    image: postgres:alpine
+    ports:
+      - ${DB_DOCKER_EXPOSE_PORT}:5432
+    expose:
+      - 5432
+    networks:
+      - calendar-api
+    restart: always
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+
+  app:
+    container_name: calendar-api-app
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+      target: development
+    networks:
+      - calendar-api
+    volumes:
+      - .:/share
+    ports:
+      - ${PORT:-3000}:${PORT:-3000}
+      - ${NODE_DEBUG_PORT:-9229}:9229
+    depends_on:
+      - db
+
+networks:
+  calendar-api:
+
+
+volumes:
+  pg-data:
