@@ -20,7 +20,12 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm": "ts-node ./node_modules/typeorm/cli",
+    "db:migrate:schema:generate": "npm run typeorm -- -d ./src/configs/typeorm.config.ts migration:generate ./src/db/migrations/$npm_config_name",
+    "db:migrate:schema:create": "npm run typeorm -- -d ./src/configs/typeorm.config.ts migration:create ./src/db/migrations/$npm_config_name",
+    "db:migrate:schema:down": "npm run typeorm -- -d ./src/configs/typeorm.config.ts migration:revert",
+    "db:migrate:schema": "npm run typeorm migration:run -- -d ./src/configs/typeorm.config.ts"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
@@ -28,9 +33,13 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/swagger": "^6.1.2",
+    "@nestjs/typeorm": "^9.0.1",
+    "dotenv-flow": "^3.2.0",
+    "pg": "^8.8.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "typeorm": "^0.3.10"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
