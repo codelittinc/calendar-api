@@ -4,9 +4,10 @@ import { DataSource } from 'typeorm';
 import { getDbAppConfig } from './configs/db.config';
 import { HealthModule } from './health/health.module';
 import { TokensModule } from './tokens/tokens.module';
+import { RemindersModule } from './reminders/reminders.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(getDbAppConfig()), HealthModule, TokensModule],
+  imports: [TypeOrmModule.forRoot(getDbAppConfig()), HealthModule, TokensModule, RemindersModule],
   controllers: [],
   providers: [],
 })

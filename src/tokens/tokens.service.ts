@@ -13,9 +13,13 @@ export class TokensService {
   ) {}
 
   async create(createTokenDto: CreateTokenDto) {
-    const newToken = this.tokenRepository.create(createTokenDto);
+    try {
+      const newToken = this.tokenRepository.create(createTokenDto);
 
-    return await this.tokenRepository.save(newToken);
+      return await this.tokenRepository.save(newToken);
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
   }
 
   async findOne(id: string) {
