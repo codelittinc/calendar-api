@@ -24,6 +24,11 @@ export class RemindersController {
     return await this.remindersService.findRemindersNotificationsByMonth(token, getNotificationsByMonthDto);
   }
 
+  @Get(':token/:id')
+  async findOne(@Param('token') token: string, @Param('id') id: string) {
+    return await this.remindersService.findOne(token, id);
+  }
+
   @Get(':token/by-day')
   async findRemindersByDay(@Param('token') token: string, @Query() getremindersByDayDto: GetRemindersByDayDto) {
     return await this.remindersService.findRemindersByDay(token, getremindersByDayDto);
