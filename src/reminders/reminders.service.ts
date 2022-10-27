@@ -52,6 +52,14 @@ export class RemindersService {
     }
   }
 
+  async findOne(token: string, id: string) {
+    try {
+      return await this.remindersRepository.findOneOrFail({ where: { id: id, token: { id: token } } });
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
+  }
+
   async findRemindersByDay(token: string, getRemindersByDayDto: GetRemindersByDayDto) {
     try {
       const { date } = getRemindersByDayDto;
