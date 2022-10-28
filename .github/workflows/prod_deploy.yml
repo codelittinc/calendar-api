@@ -18,3 +18,4 @@ jobs:
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME_PROD }}
           dontuseforce: false
+          usedocker: true
