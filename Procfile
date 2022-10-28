@@ -1,1 +1,1 @@
-web: npm run docker:start:prod
+web: npm run start:prod
