@@ -30,7 +30,7 @@ export class RemindersController {
     status: 200,
     description: 'Returns an array with the days that have created reminders',
   })
-  @ApiParam({ name: 'token', description: 'A valid token ID to authenticate', type: 'uuid' })
+  @ApiParam({ name: 'token', description: 'A valid token ID to authenticate' })
   @Get(':token')
   async findRemindersNotificationsByMonth(
     @Param('token') token: string,
@@ -44,7 +44,7 @@ export class RemindersController {
     status: 200,
     description: 'Returns a list of reminders for the selected date',
   })
-  @ApiParam({ name: 'token', description: 'A valid token ID to authenticate', type: 'uuid' })
+  @ApiParam({ name: 'token', description: 'A valid token ID to authenticate' })
   @Get(':token/by-day')
   async findRemindersByDay(@Param('token') token: string, @Query() getremindersByDayDto: GetRemindersByDayDto) {
     return await this.remindersService.findRemindersByDay(token, getremindersByDayDto);
@@ -55,8 +55,8 @@ export class RemindersController {
     status: 200,
     description: 'Returns a single reminder',
   })
-  @ApiParam({ name: 'token', description: 'A valid token ID to authenticate', type: 'uuid' })
-  @ApiParam({ name: 'id', description: 'A valid ID of a reminder to get', type: 'uuid' })
+  @ApiParam({ name: 'token', description: 'A valid token ID to authenticate' })
+  @ApiParam({ name: 'id', description: 'A valid ID of a reminder to get' })
   @Get(':token/:id')
   async findOne(@Param('token') token: string, @Param('id') id: string) {
     return await this.remindersService.findOne(token, id);
@@ -67,7 +67,8 @@ export class RemindersController {
     status: 200,
     description: 'The reminder has been updated successfully',
   })
-  @ApiParam({ name: 'id', description: 'A valid ID of a reminder to update', type: 'uuid' })
+  @ApiParam({ name: 'token', description: 'A valid token ID to authenticate' })
+  @ApiParam({ name: 'id', description: 'A valid ID of a reminder to update' })
   @Patch(':token/:id')
   async update(@Param('token') token: string, @Param('id') id: string, @Body() updateReminderDto: UpdateReminderDto) {
     return await this.remindersService.update(token, id, updateReminderDto);
@@ -78,7 +79,8 @@ export class RemindersController {
     status: 200,
     description: 'The reminder has been deleted successfully',
   })
-  @ApiParam({ name: 'id', description: 'A valid ID of a reminder to delete', type: 'uuid' })
+  @ApiParam({ name: 'token', description: 'A valid token ID to authenticate' })
+  @ApiParam({ name: 'id', description: 'A valid ID of a reminder to delete' })
   @Delete(':token/:id')
   async remove(@Param('token') token: string, @Param('id') id: string) {
     return await this.remindersService.remove(token, id);

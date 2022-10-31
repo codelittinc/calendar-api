@@ -28,7 +28,7 @@ export class TokensController {
     status: 200,
     description: 'Returns a single token',
   })
-  @ApiParam({ name: 'id', description: 'A valid ID of a token to get', type: 'uuid' })
+  @ApiParam({ name: 'id', description: 'A valid ID of a token to get' })
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return await this.tokensService.findOne(id);
@@ -39,7 +39,7 @@ export class TokensController {
     status: 200,
     description: 'The token has been updated successfully',
   })
-  @ApiParam({ name: 'id', description: 'A valid ID of a token to update', type: 'uuid' })
+  @ApiParam({ name: 'id', description: 'A valid ID of a token to update' })
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateTokenDto: UpdateTokenDto) {
     return await this.tokensService.update(id, updateTokenDto);
