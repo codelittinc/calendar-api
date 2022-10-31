@@ -12,7 +12,6 @@ export const getSwaggerSetupConfig = () => {
       },
       docExpansion: 'list',
       displayRequestDuration: true,
-      filter: true,
       syntaxHighlight: { theme: 'monokai' },
       tryItOutEnabled: true,
       requestSnippetsEnabled: true,
