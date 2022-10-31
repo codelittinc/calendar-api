@@ -39,14 +39,13 @@ export class RemindersService {
       const lastDay = new Date(selectedMonth.getFullYear(), selectedMonth.getMonth() + 1, 0);
       lastDay.setUTCHours(23, 59, 59, 999);
 
-      const remindersQuery = this.remindersRepository.createQueryBuilder('r');
-
-      remindersQuery.select(`DATE_TRUNC('day', r.date) as date`);
-      remindersQuery.where('r.date BETWEEN :firstDay AND :lastDay', { firstDay: firstDay, lastDay: lastDay });
-      remindersQuery.andWhere('r.token_id = :token', { token });
-      remindersQuery.groupBy(`DATE_TRUNC('day', r.date)`);
-
-      return await remindersQuery.getRawMany();
+      return await this.remindersRepository
+        .createQueryBuilder('r')
+        .select(`DATE_TRUNC('day', r.date) as date`)
+        .where('r.date BETWEEN :firstDay AND :lastDay', { firstDay: firstDay, lastDay: lastDay })
+        .andWhere('r.token_id = :token', { token })
+        .groupBy(`DATE_TRUNC('day', r.date)`)
+        .getRawMany();
     } catch (error) {
       throw new BadRequestException(error.message);
     }
@@ -77,17 +76,17 @@ export class RemindersService {
     }
   }
 
-  async update(id: string, updateReminderDto: UpdateReminderDto) {
+  async update(token: string, id: string, updateReminderDto: UpdateReminderDto) {
     try {
-      await this.remindersRepository.update(id, updateReminderDto);
+      await this.remindersRepository.update({ id: id, token: { id: token } }, updateReminderDto);
     } catch (error) {
       throw new BadRequestException(error.message);
     }
   }
 
-  async remove(id: string) {
+  async remove(token: string, id: string) {
     try {
-      await this.remindersRepository.delete(id);
+      await this.remindersRepository.delete({ id: id, token: { id: token } });
     } catch (error) {
       throw new BadRequestException(error.message);
     }

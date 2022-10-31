@@ -68,9 +68,9 @@ export class RemindersController {
     description: 'The reminder has been updated successfully',
   })
   @ApiParam({ name: 'id', description: 'A valid ID of a reminder to update', type: 'uuid' })
-  @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateReminderDto: UpdateReminderDto) {
-    return await this.remindersService.update(id, updateReminderDto);
+  @Patch(':token/:id')
+  async update(@Param('token') token: string, @Param('id') id: string, @Body() updateReminderDto: UpdateReminderDto) {
+    return await this.remindersService.update(token, id, updateReminderDto);
   }
 
   @ApiOperation({ summary: 'Delete a reminder' })
@@ -79,8 +79,8 @@ export class RemindersController {
     description: 'The reminder has been deleted successfully',
   })
   @ApiParam({ name: 'id', description: 'A valid ID of a reminder to delete', type: 'uuid' })
-  @Delete(':id')
-  async remove(@Param('id') id: string) {
-    return await this.remindersService.remove(id);
+  @Delete(':token/:id')
+  async remove(@Param('token') token: string, @Param('id') id: string) {
+    return await this.remindersService.remove(token, id);
   }
 }
