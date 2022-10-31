@@ -7,8 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "config": "cp .env.example .env",
-    "docker:start:dev": "docker-compose up -d && docker exec -it calendar-api-app bash -c 'npm run start:dev;' ",
-    "docker:start:prod": "docker-compose up -d && docker exec -it calendar-api-app bash -c 'npm run start:prod;' ",
+    "docker:start:dev": "docker-compose up -d && docker exec -it calendar-api-app bash",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
