@@ -11,11 +11,15 @@ To use the Codelitt's Calendar API, follow these steps:
 - Create a reminder using the `/reminders POST` endpoint, remember to inform the created token on the request body;
 - Manage the reminders by passing the token on the URL of each method.
 
+## How to install
+
 ### Dependencies
 
 - Install [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/)
 
 ## Installation
+
+After cloning the repository, follow these steps:
 
 ```bash
 $ npm run config
