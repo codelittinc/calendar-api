@@ -5,7 +5,7 @@ services:
     container_name: calendar-api-db
     image: postgres:alpine
     ports:
-      - ${DB_DOCKER_EXPOSE_PORT}:5432
+      - ${DB_DOCKER_EXPOSE_PORT:-5440}:5432
     expose:
       - 5432
     networks:
