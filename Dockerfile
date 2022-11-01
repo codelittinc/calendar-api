@@ -32,6 +32,5 @@ ENV PORT=3000
 EXPOSE ${PORT}
 
 RUN npm run build
-RUN npm run db:migrate:schema
 
 CMD ["node", "/share/dist/main"]
