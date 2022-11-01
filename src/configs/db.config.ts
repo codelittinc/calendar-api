@@ -23,6 +23,7 @@ export const getDbAppConfig = () => {
       autoLoadEntities: true,
       synchronize: false,
       migrationsRun: false,
+      ssl: { rejectUnauthorized: false },
     } as TypeOrmModuleOptions;
   }
 
@@ -57,6 +58,7 @@ export const getDbMigrationConfig = () => {
       database: portAndDatabase[1].split('?')[0],
       entities: [__dirname + '/../**/*.entity.{js,ts}'],
       migrations: [__dirname + '/../db/migrations/*{.ts,.js}'],
+      ssl: { rejectUnauthorized: false },
     } as DataSourceOptions;
   }
 
