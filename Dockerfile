@@ -33,4 +33,4 @@ EXPOSE ${PORT}
 
 RUN npm run build
 
-CMD ["node", "/share/dist/src/main"]
+CMD ["node", "/share/dist/main"]
