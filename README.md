@@ -39,7 +39,7 @@ $ npm run docker:start:dev
 
 $ npm install
 
-$ npm run db:setup
+$ npm run db:migrate:schema
 ```
 
 ## Running the app

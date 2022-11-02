@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "config": "cp .env.example .env",
-    "docker:start:dev": "docker-compose up -d && docker exec -it calendar-api-app bash",
+    "docker:start:dev": "docker-compose up -d && docker exec --user node -it calendar-api-app bash",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -26,8 +26,7 @@
     "db:migrate:schema:generate": "npm run typeorm -- -d ./src/configs/typeorm.config.ts migration:generate ./src/db/migrations/$npm_config_name",
     "db:migrate:schema:create": "npm run typeorm -- -d ./src/configs/typeorm.config.ts migration:create ./src/db/migrations/$npm_config_name",
     "db:migrate:schema:down": "npm run typeorm -- -d ./src/configs/typeorm.config.ts migration:revert",
-    "db:migrate:schema": "npm run typeorm migration:run -- -d ./src/configs/typeorm.config.ts",
-    "db:setup": "npm run db:migrate:schema:generate && npm run db:migrate:schema"
+    "db:migrate:schema": "npm run typeorm migration:run -- -d ./src/configs/typeorm.config.ts"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
