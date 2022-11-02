@@ -6,13 +6,17 @@ Our calendar API should be used as a tool to test integration capabilities with 
 
 To use the Codelitt's Calendar API, follow these steps:
 
-- Use the following URL to make requests through the Swagger Documentation: [Codelitt's Calendar API - Swagger](https://prod-calendar-hiring-api.herokuapp.com/swagger)
+- Use the following URL to make requests through the Swagger Documentation: [Codelitt's Calendar API - Swagger](https://prod-calendar-hiring-api.herokuapp.com/swagger);
+
+- Use the following Base URL to make requests through your application:
+
+  - [`https://prod-calendar-hiring-api.herokuapp.com/`](https://prod-calendar-hiring-api.herokuapp.com/)
 
 - Create a new authentication token using the [`/tokens POST`](https://prod-calendar-hiring-api.herokuapp.com/swagger#/Tokens/create) endpoint;
 
-- Store the authentication token as a Environment Variable on your application;
+  - Store the authentication token as a Environment Variable on your application;
 
-- Use the authentication token on the [UUID v4](https://www.uuidgenerator.net/version4) format to make further requests;
+  - Use the authentication token on the [UUID v4](https://www.uuidgenerator.net/version4) format to make further requests;
 
 - Create a reminder using the [`/reminders POST`](https://prod-calendar-hiring-api.herokuapp.com/swagger#/Reminders/create) endpoint, remember to inform the authentication token on the request body;
 
