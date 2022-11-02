@@ -1,0 +1,70 @@
+{
+  "token": {
+    "QueryFailedError": [
+      "token-0001",
+      "Invalid input syntax for type uuid."
+    ],
+    "EntityNotFoundError": [
+      "token-0002",
+      "Invalid Token"
+    ],
+    "NameIsNotString": [
+      "token-0003",
+      "Name must be a string"
+    ]
+  },
+  "reminder": {
+    "TokenIsEmpty": [
+      "reminder-0001",
+      "Token should not be empty"
+    ],
+    "TokenIsNotUUID": [
+      "reminder-0002",
+      "Token must be a UUID"
+    ],
+    "TokenIsNotString": [
+      "reminder-0003",
+      "Token must be a string"
+    ],
+    "TitleIsEmpty": [
+      "reminder-0004",
+      "Title should not be empty"
+    ],
+    "TitleIsNotString": [
+      "reminder-0005",
+      "Title must be a string"
+    ],
+    "DescriptionIsEmpty": [
+      "reminder-0006",
+      "Description should not be empty"
+    ],
+    "DescriptionIsNotString": [
+      "reminder-0007",
+      "Description must be a string"
+    ],
+    "DateIsEmpty": [
+      "reminder-0008",
+      "Date should not be empty"
+    ],
+    "DateIsNotDateString": [
+      "reminder-0009",
+      "Date must be a date string"
+    ],
+    "ColorIsEmpty": [
+      "reminder-0010",
+      "Color should not be empty"
+    ],
+    "ColorIsNotString": [
+      "reminder-0011",
+      "Color must be a string"
+    ],
+    "QueryFailedError": [
+      "reminder-0012",
+      "Invalid input syntax for type uuid."
+    ],
+    "EntityNotFoundError": [
+      "reminder-0013",
+      "Invalid Reminder"
+    ]
+  }
+}

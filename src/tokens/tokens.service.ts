@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateTokenDto } from './dto/create-token.dto';
@@ -18,7 +18,7 @@ export class TokensService {
 
       return await this.tokenRepository.save(newToken);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      throw new HttpException(`token.${error.name}`, HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -26,16 +26,17 @@ export class TokensService {
     try {
       return await this.tokenRepository.findOneOrFail({ where: { id: id } });
     } catch (error) {
-      throw new BadRequestException(error.message);
+      throw new HttpException(`token.${error.name}`, HttpStatus.BAD_REQUEST);
     }
   }
 
   async update(id: string, updateTokenDto: UpdateTokenDto) {
+    await this.findOne(id);
+
     try {
       await this.tokenRepository.update(id, updateTokenDto);
-      return await this.findOne(id);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      throw new HttpException(`token.${error.name}`, HttpStatus.BAD_REQUEST);
     }
   }
 }

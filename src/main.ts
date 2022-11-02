@@ -4,12 +4,14 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { loadEnvVars } from './configs/loadEnvVars';
 import { getSwaggerDocumentConfig, getSwaggerSetupConfig } from './configs/swagger-setup.config';
+import { GlobalExceptionFilter } from './filters/global-exception.filter';
 
 async function bootstrap() {
   loadEnvVars();
   const app = await NestFactory.create(AppModule, { cors: true });
 
   app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalFilters(new GlobalExceptionFilter());
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Calendar API Swagger Documentation - Codelitt')

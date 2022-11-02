@@ -17,6 +17,7 @@ describe('RemindersService', () => {
     save: jest.fn(() => Reminder),
     createQueryBuilder: jest.fn().mockImplementation(() => createQueryBuilder),
     find: jest.fn(() => [Reminder]),
+    findOneOrFail: jest.fn(() => Reminder),
     update: jest.fn(() => void 1),
     delete: jest.fn(() => void 1),
   };
