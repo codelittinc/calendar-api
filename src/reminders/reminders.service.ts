@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TokensService } from '../tokens/tokens.service';
 import { Between, Repository } from 'typeorm';
@@ -16,21 +16,24 @@ export class RemindersService {
 
     private readonly tokensService: TokensService,
   ) {}
+
   async create(createReminderDto: CreateReminderDto) {
+    const { token: tokenId, ...rest } = createReminderDto;
+
+    const token = await this.tokensService.findOne(tokenId);
+
     try {
-      const { token: tokenId, ...rest } = createReminderDto;
-
-      const token = await this.tokensService.findOne(tokenId);
-
       const newReminder = this.remindersRepository.create({ token: token, ...rest });
 
       return await this.remindersRepository.save(newReminder);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      throw new HttpException(`reminder.${error.name}`, HttpStatus.BAD_REQUEST);
     }
   }
 
   async findRemindersNotificationsByMonth(token: string, getNotificationsByMonthDto: GetNotificationsByMonthDto) {
+    await this.tokensService.findOne(token);
+
     try {
       const { date } = getNotificationsByMonthDto;
 
@@ -47,19 +50,13 @@ export class RemindersService {
         .groupBy(`DATE_TRUNC('day', r.date)`)
         .getRawMany();
     } catch (error) {
-      throw new BadRequestException(error.message);
-    }
-  }
-
-  async findOne(token: string, id: string) {
-    try {
-      return await this.remindersRepository.findOneOrFail({ where: { id: id, token: { id: token } } });
-    } catch (error) {
-      throw new BadRequestException(error.message);
+      throw new HttpException(`reminder.${error.name}`, HttpStatus.BAD_REQUEST);
     }
   }
 
   async findRemindersByDay(token: string, getRemindersByDayDto: GetRemindersByDayDto) {
+    await this.tokensService.findOne(token);
+
     try {
       const { date } = getRemindersByDayDto;
 
@@ -72,23 +69,39 @@ export class RemindersService {
         where: { token: { id: token }, date: Between(startOfDay, endOfDay) },
       });
     } catch (error) {
-      throw new BadRequestException(error.message);
+      throw new HttpException(`reminder.${error.name}`, HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  async findOne(token: string, id: string) {
+    await this.tokensService.findOne(token);
+
+    try {
+      return await this.remindersRepository.findOneOrFail({ where: { id: id, token: { id: token } } });
+    } catch (error) {
+      throw new HttpException(`reminder.${error.name}`, HttpStatus.BAD_REQUEST);
     }
   }
 
   async update(token: string, id: string, updateReminderDto: UpdateReminderDto) {
+    await this.tokensService.findOne(token);
+    await this.findOne(token, id);
+
     try {
       await this.remindersRepository.update({ id: id, token: { id: token } }, updateReminderDto);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      throw new HttpException(`reminder.${error.name}`, HttpStatus.BAD_REQUEST);
     }
   }
 
   async remove(token: string, id: string) {
+    await this.tokensService.findOne(token);
+    await this.findOne(token, id);
+
     try {
       await this.remindersRepository.delete({ id: id, token: { id: token } });
     } catch (error) {
-      throw new BadRequestException(error.message);
+      throw new HttpException(`reminder.${error.name}`, HttpStatus.BAD_REQUEST);
     }
   }
 }

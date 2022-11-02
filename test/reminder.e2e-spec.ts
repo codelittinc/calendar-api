@@ -12,7 +12,10 @@ describe('ReminderController (e2e)', () => {
   const mockRemindersRepository = {
     findOneOrFail: jest.fn(),
   };
-  const mockTokensRepository = {};
+
+  const mockTokensRepository = {
+    findOneOrFail: jest.fn(),
+  };
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({

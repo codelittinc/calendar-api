@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Patch } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch, HttpCode } from '@nestjs/common';
 import { TokensService } from './tokens.service';
 import { CreateTokenDto } from './dto/create-token.dto';
 import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -12,11 +12,11 @@ export class TokensController {
   @ApiOperation({ summary: 'Create a token' })
   @ApiResponse({
     status: 201,
-    description: 'The token has been successfully created',
+    description: 'The token has been created successfully',
   })
   @ApiResponse({
     status: 400,
-    description: 'An error has occurred when trying to create a token',
+    description: 'Bad Request',
   })
   @Post()
   async create(@Body() createTokenDto: CreateTokenDto) {
@@ -28,16 +28,25 @@ export class TokensController {
     status: 200,
     description: 'Returns a single token',
   })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad Request',
+  })
   @ApiParam({ name: 'id', description: 'A valid ID of a token to get' })
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return await this.tokensService.findOne(id);
   }
 
+  @HttpCode(204)
   @ApiOperation({ summary: 'Update the data of a token' })
   @ApiResponse({
-    status: 200,
+    status: 204,
     description: 'The token has been updated successfully',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad Request',
   })
   @ApiParam({ name: 'id', description: 'A valid ID of a token to update' })
   @Patch(':id')

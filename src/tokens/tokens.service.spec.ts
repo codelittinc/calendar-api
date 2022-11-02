@@ -16,7 +16,7 @@ describe('TokensService', () => {
 
     findOneOrFail: jest.fn(),
 
-    update: jest.fn(),
+    update: jest.fn(() => void 1),
   };
 
   beforeEach(async () => {
@@ -74,7 +74,7 @@ describe('TokensService', () => {
     });
 
     it('should return the updated token', async () => {
-      expect(await service.update('1', { name: 'John Doe' })).toEqual(token);
+      expect(await service.update('1', { name: 'John Doe' })).toBe(void 1);
     });
   });
 });

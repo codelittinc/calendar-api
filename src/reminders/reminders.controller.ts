@@ -18,7 +18,7 @@ export class RemindersController {
   })
   @ApiResponse({
     status: 400,
-    description: 'An error has occurred when trying to create a reminder',
+    description: 'Bad Request',
   })
   @Post()
   async create(@Body() createReminderDto: CreateReminderDto) {
@@ -29,6 +29,10 @@ export class RemindersController {
   @ApiResponse({
     status: 200,
     description: 'Returns an array with the days that have created reminders',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad Request',
   })
   @ApiParam({ name: 'token', description: 'A valid token ID to authenticate' })
   @Get(':token')
@@ -44,6 +48,10 @@ export class RemindersController {
     status: 200,
     description: 'Returns a list of reminders for the selected date',
   })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad Request',
+  })
   @ApiParam({ name: 'token', description: 'A valid token ID to authenticate' })
   @Get(':token/by-day')
   async findRemindersByDay(@Param('token') token: string, @Query() getremindersByDayDto: GetRemindersByDayDto) {
@@ -54,6 +62,10 @@ export class RemindersController {
   @ApiResponse({
     status: 200,
     description: 'Returns a single reminder',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad Request',
   })
   @ApiParam({ name: 'token', description: 'A valid token ID to authenticate' })
   @ApiParam({ name: 'id', description: 'A valid ID of a reminder to get' })
@@ -67,6 +79,10 @@ export class RemindersController {
     status: 200,
     description: 'The reminder has been updated successfully',
   })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad Request',
+  })
   @ApiParam({ name: 'token', description: 'A valid token ID to authenticate' })
   @ApiParam({ name: 'id', description: 'A valid ID of a reminder to update' })
   @Patch(':token/:id')
@@ -78,6 +94,10 @@ export class RemindersController {
   @ApiResponse({
     status: 200,
     description: 'The reminder has been deleted successfully',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad Request',
   })
   @ApiParam({ name: 'token', description: 'A valid token ID to authenticate' })
   @ApiParam({ name: 'id', description: 'A valid ID of a reminder to delete' })
