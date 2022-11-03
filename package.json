@@ -1,10 +1,10 @@
 {
   "name": "calendar-api",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "version": "1.0.0",
+  "description": "Our calendar API should be used as a tool to test integration capabilities with an API.",
+  "author": "https://github.com/Wellington-gc",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "config": "cp .env.example .env",
     "docker:start:dev": "docker-compose up -d && docker exec --user node -it calendar-api-app bash",

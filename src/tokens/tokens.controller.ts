@@ -13,6 +13,14 @@ export class TokensController {
   @ApiResponse({
     status: 201,
     description: 'The token has been created successfully',
+    schema: {
+      example: {
+        id: '21681ba4-7556-4358-9500-e4afe1ce6141',
+        name: 'John Doe',
+        createdAt: '2022-11-02T15:12:13.242Z',
+        updatedAt: '2022-11-02T15:12:13.242Z',
+      },
+    },
   })
   @ApiResponse({
     status: 400,
@@ -27,6 +35,14 @@ export class TokensController {
   @ApiResponse({
     status: 200,
     description: 'Returns a single token',
+    schema: {
+      example: {
+        id: '21681ba4-7556-4358-9500-e4afe1ce6141',
+        name: 'John Doe',
+        createdAt: '2022-11-02T15:12:13.242Z',
+        updatedAt: '2022-11-02T15:12:13.242Z',
+      },
+    },
   })
   @ApiResponse({
     status: 400,
