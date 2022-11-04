@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { loadEnvVars } from './configs/loadEnvVars';
-import { getSwaggerDocumentConfig, getSwaggerSetupConfig } from './configs/swagger-setup.config';
+import { getSwaggerDescription, getSwaggerDocumentConfig, getSwaggerSetupConfig } from './configs/swagger-setup.config';
 import { GlobalExceptionFilter } from './filters/global-exception.filter';
 
 async function bootstrap() {
@@ -16,7 +16,7 @@ async function bootstrap() {
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Calendar API Swagger Documentation - Codelitt')
     .setContact('Codelitt', 'https://www.codelitt.com/', 'hello@codelitt.com')
-    .setDescription('This is an API built to create calendars reminders.')
+    .setDescription(getSwaggerDescription())
     .setVersion('v1')
     .build();
 
