@@ -15,7 +15,6 @@ async function bootstrap() {
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Calendar API Swagger Documentation - Codelitt')
-    .setContact('Codelitt', 'https://www.codelitt.com/', 'hello@codelitt.com')
     .setDescription(getSwaggerDescription())
     .setVersion('v1')
     .build();
