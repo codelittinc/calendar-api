@@ -6,13 +6,13 @@ Our calendar API should be used as a tool to test integration capabilities with 
 
 To use the Codelitt's Calendar API, follow these steps:
 
-- Use the following URL to make requests through the Swagger Documentation: [Codelitt's Calendar API - Swagger](https://prod-calendar-hiring-api.herokuapp.com/swagger);
+- Use the following URL to make requests through the Swagger Documentation: [Codelitt's Calendar API - Swagger](https://api.calendar.codelitt.dev/docs);
 
 - Use the following Base URL to make requests through your application:
 
-  - [`https://prod-calendar-hiring-api.herokuapp.com/`](https://prod-calendar-hiring-api.herokuapp.com/)
+  - [`https://api.calendar.codelitt.dev/`](https://api.calendar.codelitt.dev/)
 
-- Create a new authentication token using the [`/tokens POST`](https://prod-calendar-hiring-api.herokuapp.com/swagger#/Tokens/create) endpoint through Swagger:
+- Create a new authentication token using the [`/tokens POST`](https://api.calendar.codelitt.dev/docs#/Tokens/create) endpoint through Swagger:
 
   - The token only needs to be created once, it is a user's choice to create more tokens;
 
@@ -37,9 +37,9 @@ To use the Codelitt's Calendar API, follow these steps:
 
   - Use the authentication token on the [UUID v4](https://www.uuidgenerator.net/version4) format to make further requests;
 
-- Create a reminder using the [`/reminders POST`](https://prod-calendar-hiring-api.herokuapp.com/swagger#/Reminders/create) endpoint, remember to inform the authentication token on the request body;
+- Create a reminder using the [`/reminders POST`](https://api.calendar.codelitt.dev/docs#/Reminders/create) endpoint, remember to inform the authentication token on the request body;
 
-- Get and Manage the reminders by passing the authentication token on the URL of each Reminder method ([GET](https://prod-calendar-hiring-api.herokuapp.com/swagger#/Reminders/findRemindersNotificationsByMonth), [PATCH](https://prod-calendar-hiring-api.herokuapp.com/swagger#/Reminders/update), [DELETE](https://prod-calendar-hiring-api.herokuapp.com/swagger#/Reminders/remove)).
+- Get and Manage the reminders by passing the authentication token on the URL of each Reminder method ([GET](https://api.calendar.codelitt.dev/docs#/Reminders/findRemindersNotificationsByMonth), [PATCH](https://api.calendar.codelitt.dev/docs#/Reminders/update), [DELETE](https://api.calendar.codelitt.dev/docs#/Reminders/remove)).
 
 # Colaborating to the Project
 
