@@ -2,7 +2,7 @@
 
 Our calendar API should be used as a tool to test integration capabilities with an API.
 
-## Using Codelitt's Calendar API
+# Using Codelitt's Calendar API
 
 To use the Codelitt's Calendar API, follow these steps:
 
@@ -12,15 +12,36 @@ To use the Codelitt's Calendar API, follow these steps:
 
   - [`https://prod-calendar-hiring-api.herokuapp.com/`](https://prod-calendar-hiring-api.herokuapp.com/)
 
-- Create a new authentication token using the [`/tokens POST`](https://prod-calendar-hiring-api.herokuapp.com/swagger#/Tokens/create) endpoint;
+- Create a new authentication token using the [`/tokens POST`](https://prod-calendar-hiring-api.herokuapp.com/swagger#/Tokens/create) endpoint through Swagger:
 
-  - Store the authentication token as a Environment Variable on your application;
+  - The token only needs to be created once, it is a user's choice to create more tokens;
+
+  - The `name` field on the request body is an optional field, the token can be created without it;
+
+  - After changing the request body payload to the desired value, execute the request by clicking on the `Execute` button;
+
+  - A similar response body will be returned:
+
+  ```jsonc
+  {
+    "id": "21681ba4-7556-4358-9500-e4afe1ce6141", //The token (UUID)
+    "name": "John Doe", //The User's name (Optional - Nullable)
+    "createdAt": "2022-11-02T15:12:13.242Z", // The date when the Token was created
+    "updatedAt": "2022-11-02T15:12:13.242Z" // The last date that the token has been updated
+  }
+  ```
+
+  - On the response body, the `id` field represents the authentication token ;
+
+  - The authentication token should be stored as an Environment Variable on your application;
 
   - Use the authentication token on the [UUID v4](https://www.uuidgenerator.net/version4) format to make further requests;
 
 - Create a reminder using the [`/reminders POST`](https://prod-calendar-hiring-api.herokuapp.com/swagger#/Reminders/create) endpoint, remember to inform the authentication token on the request body;
 
-- Manage the reminders by passing the authentication token on the URL of each Reminder method ([GET](https://prod-calendar-hiring-api.herokuapp.com/swagger#/Reminders/findRemindersNotificationsByMonth), [PATCH](https://prod-calendar-hiring-api.herokuapp.com/swagger#/Reminders/update), [DELETE](https://prod-calendar-hiring-api.herokuapp.com/swagger#/Reminders/remove)).
+- Get and Manage the reminders by passing the authentication token on the URL of each Reminder method ([GET](https://prod-calendar-hiring-api.herokuapp.com/swagger#/Reminders/findRemindersNotificationsByMonth), [PATCH](https://prod-calendar-hiring-api.herokuapp.com/swagger#/Reminders/update), [DELETE](https://prod-calendar-hiring-api.herokuapp.com/swagger#/Reminders/remove)).
+
+# Colaborating to the Project
 
 ## How to install
 
