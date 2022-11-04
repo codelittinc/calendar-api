@@ -16,14 +16,13 @@ async function bootstrap() {
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Calendar API Swagger Documentation - Codelitt')
     .setContact('Codelitt', 'https://www.codelitt.com/', 'hello@codelitt.com')
-    .setExternalDoc('API documentation', 'https://github.com/codelittinc/calendar-api#readme')
     .setDescription('This is an API built to create calendars reminders.')
     .setVersion('v1')
     .build();
 
   const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig, getSwaggerDocumentConfig());
 
-  SwaggerModule.setup('swagger', app, swaggerDocument, getSwaggerSetupConfig());
+  SwaggerModule.setup('docs', app, swaggerDocument, getSwaggerSetupConfig());
 
   await app.listen(process.env.PORT);
 }
