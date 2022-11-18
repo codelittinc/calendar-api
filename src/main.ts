@@ -5,9 +5,11 @@ import { AppModule } from './app.module';
 import { loadEnvVars } from './configs/loadEnvVars';
 import { getSwaggerDescription, getSwaggerDocumentConfig, getSwaggerSetupConfig } from './configs/swagger-setup.config';
 import { GlobalExceptionFilter } from './filters/global-exception.filter';
+import { loadDatadogConfig } from './configs/datadog.config';
 
 async function bootstrap() {
   loadEnvVars();
+  loadDatadogConfig();
   const app = await NestFactory.create(AppModule, { cors: true });
 
   app.useGlobalPipes(new ValidationPipe());
