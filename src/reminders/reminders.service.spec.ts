@@ -18,7 +18,7 @@ describe('RemindersService', () => {
     createQueryBuilder: jest.fn().mockImplementation(() => createQueryBuilder),
     find: jest.fn(() => [Reminder]),
     findOneOrFail: jest.fn(() => Reminder),
-    update: jest.fn(() => void 1),
+    update: jest.fn(() => Reminder),
     delete: jest.fn(() => void 1),
   };
 
@@ -68,7 +68,7 @@ describe('RemindersService', () => {
   });
 
   it('should update a reminder', async () => {
-    expect(await service.update('1', '2', new UpdateReminderDto())).toBe(void 1);
+    expect(await service.update('1', '2', new UpdateReminderDto())).toBe(Reminder);
   });
 
   it('should delete a reminder', async () => {

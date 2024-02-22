@@ -89,6 +89,7 @@ export class RemindersService {
 
     try {
       await this.remindersRepository.update({ id: id, token: { id: token } }, updateReminderDto);
+      return await this.findOne(token, id);
     } catch (error) {
       throw new HttpException(`reminder.${error.name}`, HttpStatus.BAD_REQUEST);
     }
